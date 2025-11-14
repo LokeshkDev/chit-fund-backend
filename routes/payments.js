@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 
 // ✅ Create or toggle payment
 router.post("/", async (req, res) => {
-  const { memberId, planId, period, amount, paymentMode } = req.body;
+  const { memberId, planId, period, amount, paymentMode, transactionNo } = req.body;
 
   // Check if record exists
   let payment = await Payment.findOne({ memberId, period });
@@ -32,6 +32,7 @@ router.post("/", async (req, res) => {
       amount,
       paymentMode: paymentMode || "Cash",
       status: "Paid",
+      transactionNo: transactionNo || null,
       paymentDate: new Date(),
     });
     await payment.save();

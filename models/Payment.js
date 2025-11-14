@@ -7,6 +7,7 @@ const paymentSchema = new mongoose.Schema({
   amount: Number,
   status: { type: String, enum: ["Paid", "Pending"], default: "Paid" },
   paymentDate: { type: Date, default: Date.now },
+  transactionNo: { type: String, default: null },
   paymentMode: { type: String, default: "Cash" }, // 👈 added field
 });
 
